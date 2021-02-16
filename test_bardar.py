@@ -13,10 +13,6 @@ import seaborn as sns
 import os
 import tarfile
 
-
-# In[ ]:
-
-
 # create dataframe from file in archive
 def get_df(path, fname):
         with tarfile.open(f'{path}/{archive_name}') as t:
@@ -68,11 +64,6 @@ def columns_for_gene_expression_compare(low, high, codegenes):
     data_list = [annotation_trunc.iloc[i, 0], annotation_trunc.iloc[i, 1], low_num, low_cod, high_num, high_cod]
     return data_list
             
-
-
-# In[ ]:
-
-
 # variables with used files
 archive_name = 'expression-kallisto-xena.tar.gz'
 logfile = 'Sample-kallisto-Xena-gene-log2TPMplus1.tsv'
@@ -83,14 +74,8 @@ withoutnc = 'Sample-kallisto-Xena-gene-log2TPMplus1_without_noncoding.tsv'
 outside_path = '/home/dasha/Documents/test_task'
 
 
-# In[ ]:
-
-
 annotation = pd.read_csv(f'{outside_path}/FFPE_annotation.txt', sep='\t')
 annotation
-
-
-# In[ ]:
 
 
 sns.set_style("darkgrid")
@@ -119,10 +104,6 @@ for i in range(len(annotation)):
         sns.kdeplot(data=qiagen_df['Sample'], label='qiagen', shade=True, color='darkturquoise', ax=ax3)
         ax3.legend(fontsize='xx-large')
         ax3.set(xlim=(0, None))
-
-
-# In[ ]:
-
 
 c_low = dict()
 c_high = dict()
@@ -183,44 +164,6 @@ columns = ['Sample', 'Tissue', 'Low_num', 'Low_coding', 'Over_num', 'Over_coding
 covaris_shift = pd.DataFrame(for_covaris, columns=columns)
 purigen_shift = pd.DataFrame(for_purigen, columns=columns)
 qiagen_shift = pd.DataFrame(for_qiagen, columns=columns)
-
-
-# In[ ]:
-
-
-# ##### Контент колонок: 
-# * **Low_num** - количество генов, экспрессия которых при данной пробоподготовке ниже, чем при других
-# * **Low_coding** - доля кодирующих генов в *Low_num*
-# * **Over_num** - количество генов, экспрессия которых при данной пробоподготовке выше, чем при других
-# * **Over_coding** - доля кодирующих генов в *Over_num*
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-covaris_shift
-
-
-# In[ ]:
-
-
-purigen_shift
-
-
-# In[ ]:
-
-
-qiagen_shift
-
-
-# In[ ]:
-
 
 sns.set_style("darkgrid")
 x = 'length'
