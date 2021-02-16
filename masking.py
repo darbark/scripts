@@ -9,9 +9,9 @@ path_to_output_folder = input('path to folder with output files: ')
 cap = input('cap sequence: ')
 
 def search_similar_str(text, substr):
-    """Поиск наиболее похожей подстроки в тексте.
-    Принимает на вход текст и искомую подстроку.
-    Возвращает коэффициент схожести и список похожих подстрок"""
+# Search the most similar substring to the given example
+# input is a string and required substring
+# output is similarity coefficient and list of substrings
     if substr in text:
         return 1, [substr]
 
@@ -42,15 +42,3 @@ for file in input_folder:
             content[i] = content[i].replace(found[1][0], 'N' * len(found[1][0]), 1)
     with open(f'{path_to_output_folder}/masked_{file}', mode='w') as outfile:
         outfile.writelines(content)
-
-
-
-
-
-
-
-
-
-
-
-
